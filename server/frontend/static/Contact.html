@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Contact Us - Best Cars Dealership</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+</head>
+<body>
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
+    <div class="container-fluid">
+      <h2 style="padding-right: 5%;">Dealerships</h2>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: larger;" href="/about">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style="font-size: larger;" href="/contact">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="card" style="width: 80%; margin: auto; margin-top:5%; padding: 25px;">
+    <div class="banner" name="contact-header" style="margin-bottom: 25px;">
+      <h1>Contact Us</h1>
+      <p style="font-size: 1.1rem; color: #555;">
+        Have questions about a vehicle, financing, or schedule a test drive? We'd love to hear from you! Get in touch with the Best Cars team today.
+      </p>
+    </div>
+
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 30px;">
+      <!-- Contact Details -->
+      <div class="card" style="flex: 1; min-width: 300px; padding: 20px; border-left: 5px solid darkturquoise;">
+        <h3 style="font-weight: bold; margin-bottom: 20px; color: #333;">Get In Touch</h3>
+        <p><strong>Headquarters & Main Dealership:</strong><br>100 Motor City Parkway, Suite 500<br>Chicago, IL 60601, United States</p>
+        <p><strong>Customer Support & Sales Line:</strong><br>+1 (800) 555-AUTO (2886)</p>
+        <p><strong>General Inquiries & Email:</strong><br>contact@bestcarsdealership.com</p>
+        <p><strong>Operating Hours:</strong><br>Monday – Friday: 8:00 AM – 8:00 PM EST<br>Saturday: 9:00 AM – 6:00 PM EST<br>Sunday: Closed</p>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="card" style="flex: 1.5; min-width: 320px; padding: 20px;">
+        <h3 style="font-weight: bold; margin-bottom: 20px; color: #333;">Send Us a Message</h3>
+        <form action="#" method="post">
+          <div class="mb-3">
+            <label for="fullName" class="form-label" style="font-weight: 600;">Full Name</label>
+            <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label" style="font-weight: 600;">Email Address</label>
+            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label" style="font-weight: 600;">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" placeholder="(555) 000-0000">
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label" style="font-weight: 600;">Message / Inquiry</label>
+            <textarea class="form-control" id="message" rows="4" placeholder="How can we help you find your next vehicle?" required></textarea>
+          </div>
+          <button type="button" class="btn btn-info text-white font-weight-bold" style="background-color: darkturquoise; border: none; padding: 10px 25px;">Submit Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
