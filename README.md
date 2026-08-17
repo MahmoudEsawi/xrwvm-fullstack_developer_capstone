@@ -10,13 +10,13 @@
 [![IBM Cloud](https://img.shields.io/badge/IBM_Cloud-Code_Engine-052FAD?style=for-the-badge&logo=ibm&logoColor=white)](https://cloud.ibm.com/)
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI%2FCD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/features/actions)
 
-> **Fullstack Developer Capstone Project**: A modern, microservice-based web application for exploring nationwide car dealerships, submitting customer reviews, viewing microservice sentiment analysis, and managing vehicle inventories.
+> **Fullstack Developer Capstone Project**: A modern, microservice-based web application for exploring nationwide car dealerships, submitting customer reviews, viewing microservice sentiment analysis, and managing vehicle inventories. Built using strict **Clean Architecture** and SOLID design principles.
 
 ---
 
 ## 📌 Table of Contents
+- [🏛 Clean Architecture Principles](#-clean-architecture-principles)
 - [✨ Key Features](#-key-features)
-- [🏗 System Architecture](#-system-architecture)
 - [🖼 Visual Showcase & Screenshots](#-visual-showcase--screenshots)
 - [🛠 Tech Stack & Tools](#-tech-stack--tools)
 - [📡 API Endpoints Reference](#-api-endpoints-reference)
@@ -24,6 +24,59 @@
 - [🐳 Containerization & Kubernetes](#-containerization--kubernetes)
 - [🔄 CI/CD Pipeline](#-cicd-pipeline)
 - [📄 License & Credits](#-license--credits)
+
+---
+
+## 🏛 Clean Architecture Principles
+
+The application implements Robert C. Martin's (**Clean Architecture**) principles, decoupling core enterprise domain rules from frameworks, UI, and external data sources into four distinct layers:
+
+```mermaid
+graph TD
+    subgraph Layer 1: Enterprise Entities
+        E1[CarMake Model]
+        E2[CarModel Model]
+        E3[Dealership Entity]
+        E4[Review Entity]
+    end
+
+    subgraph Layer 2: Application Use Cases
+        U1[Authenticate User]
+        U2[Fetch & Filter Dealerships]
+        U3[Fetch & Analyze Reviews]
+        U4[Submit Customer Review]
+    end
+
+    subgraph Layer 3: Interface Adapters & Presenters
+        A1[Django Proxy Views / Controllers]
+        A2[REST Gateway Clients restapis.py]
+        A3[React Component State Presenters]
+    end
+
+    subgraph Layer 4: Frameworks & External Drivers
+        F1[React Single Page Application UI]
+        F2[Express.js MongoDB Microservice Port 3030]
+        F3[Flask NLTK Sentiment Microservice Port 5050]
+        F4[SQLite Auth & Inventory DB]
+    end
+
+    F1 --> A1
+    A1 --> U1
+    A1 --> U2
+    A1 --> U3
+    A1 --> U4
+    A2 --> F2
+    A2 --> F3
+    U1 --> E1
+    U2 --> E3
+    U3 --> E4
+```
+
+### Layer Breakdown
+1. **Entities Layer (`server/djangoapp/models.py`)**: Core domain data structures (`CarMake`, `CarModel`) encapsulating enterprise business logic and constraints.
+2. **Use Cases Layer (`server/djangoapp/restapis.py`)**: Application-specific orchestration including backend API request wrappers, payload serialization, and sentiment analysis pipeline logic.
+3. **Interface Adapters Layer (`server/djangoapp/views.py`)**: Converts data between the domain use cases and HTTP request/response formats (JSON, session tokens).
+4. **Frameworks & Drivers Layer (`server/frontend/` & `server/database/`)**: Concrete external frameworks including React UI, Express Node.js MongoDB microservice, and Docker containers.
 
 ---
 
@@ -37,32 +90,6 @@
 - **⚡ Node.js & MongoDB Backend Service**: High-performance Node Express API container servicing dealer records and mongo review documents.
 - **🐳 Multi-Container Orchestration**: Production-ready `docker-compose` setup and Kubernetes deployment manifest (`deployment.yaml`).
 - **🛡 Automated CI/CD Pipeline**: GitHub Actions workflow running automated Flake8 Python linting and React JS build verification.
-
----
-
-## 🏗 System Architecture
-
-```mermaid
-graph TD
-    Client[📱 Web Client / React SPA] -->|HTTP / REST| Django[🐍 Django Proxy Web Application]
-    
-    subgraph Django App Core [Port 8000]
-        Django --> Auth[User Auth & Sessions]
-        Django --> DjangoDB[(🗄 SQLite DB - Makes & Models)]
-        Django --> Views[Proxy Views & Templates]
-    end
-
-    Django -->|REST API| NodeService[🟢 Node.js Express API - Port 3030]
-    Django -->|HTTP API| SentimentService[🤖 Sentiment Analyzer Microservice - Port 5050]
-
-    subgraph Node Backend Microservice [Port 3030]
-        NodeService --> MongoDB[(🍃 MongoDB Database - Dealerships & Reviews)]
-    end
-
-    subgraph Sentiment Microservice [Port 5050]
-        SentimentService --> NLTK[NLTK / VADER Natural Language Processor]
-    end
-```
 
 ---
 
