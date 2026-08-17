@@ -1,2 +1,2 @@
-curl -X GET "http://localhost:8000/djangoapp/get_dealers/Kansas"
-{"status": 200, "dealers": [{"_id": "6a838bd7726358afdd7c7e5a", "id": 8, "city": "Topeka", "state": "Kansas", "address": "288 Larry Place", "zip": "66642", "lat": "39.0429", "long": "-95.7697", "short_name": "Bytecard", "full_name": "Bytecard Car Dealership", "__v": 0}]}
+curl -X GET "http://localhost:3030/fetchDealers/Kansas"
+[{"_id":"6a838bd7726358afdd7c7e56","id":4,"city":"Topeka","state":"Kansas","address":"2 Western Hill Drive","zip":"66667","lat":"39.0494","long":"-95.7323","short_name":"Fixflex","full_name":"Fixflex Car Dealership","__v":0},{"_id":"6a838bd7726358afdd7c7e57","id":5,"city":"Topeka","state":"Kansas","address":"3 Montana Alley","zip":"66605","lat":"39.0264","long":"-95.666","short_name":"Greenlam","full_name":"Greenlam Car Dealership","__v":0}]
